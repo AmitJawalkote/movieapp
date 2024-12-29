@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/models/now_playing_model.dart';
 import 'package:movie_app/providers/movies_providers.dart';
 import 'package:movie_app/screens/favourite_movies.dart';
+import 'package:movie_app/screens/series_details_screen.dart';
 import 'package:movie_app/screens/widgets/movie_category_movies.dart';
 import 'package:movie_app/utils/helpers/constant.dart';
 
@@ -65,7 +66,13 @@ class HomeScreen extends ConsumerWidget {
                     itemCount: moviesList.length,
                     itemBuilder: (context, index, realIndex) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => SeresDetailsScreen(
+                              id: moviesList[index].id.toString(),
+                            ),
+                          ));
+                        },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: CachedNetworkImage(
@@ -95,7 +102,10 @@ class HomeScreen extends ConsumerWidget {
                 },
                 error: (error, stackTrace) => Text(error.toString()),
                 loading: () {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ));
                 },
               ),
               Text(

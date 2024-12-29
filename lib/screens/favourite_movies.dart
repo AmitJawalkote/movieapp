@@ -32,8 +32,10 @@ class _FavouriteMoviesState extends State<FavouriteMovies> {
     return Scaffold(
       backgroundColor: backGroundColor,
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Favourite Movies',
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
       ),

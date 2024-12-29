@@ -20,8 +20,9 @@ class _SearchScreenState extends ConsumerState<SearchScreen> {
     final AsyncValue<List<Result>> asyncData =
         ref.watch(movieSearchProvider(controller.text));
     return Scaffold(
+      backgroundColor: backGroundColor,
       appBar: AppBar(
-        backgroundColor: backGroundColor,
+        backgroundColor: Colors.transparent,
         title: const Text(
           'Search Movies',
           style: TextStyle(color: Colors.white),
