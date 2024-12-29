@@ -71,6 +71,7 @@ class UpcomingScreen extends ConsumerWidget {
                   itemCount: moviesList.length,
                   itemBuilder: (context, index) {
                     return ComongSoonWidget(
+                      movieName:  moviesList[index].title.toString(),
                       mainImage: moviesList[index].posterPath.toString(),
                       logoUrl: moviesList[index].backdropPath.toString(),
                       month: moviesList[index].releaseDate!,

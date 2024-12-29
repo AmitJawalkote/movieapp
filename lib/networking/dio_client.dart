@@ -6,15 +6,15 @@ class DioClient {
   late Dio _dio;
   DioClient() {
     _dio = Dio(BaseOptions(
+        baseUrl: apiUrl,
         headers: {'Authorization': 'Bearer $token'},
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10)));
   }
 
   Future<Response> get(String urlEndpoint) async {
-    final url = apiUrl + urlEndpoint;
     try {
-      final response = await _dio.get(url);
+      final response = await _dio.get(urlEndpoint);
       return response;
     } catch (e) {
       throw Exception(e);

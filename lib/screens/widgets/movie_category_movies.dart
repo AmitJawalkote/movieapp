@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/models/now_playing_model.dart';
 import 'package:movie_app/screens/movies_details_screen.dart';
@@ -28,7 +26,9 @@ class MovieCategoryAndItsImages extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const MovieDetailsScreen(),
+                    builder: (context) => MovieDetailsScreen(
+                      id: moviesList[index].id.toString(),
+                    ),
                   )),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -52,9 +52,15 @@ class MovieCategoryAndItsImages extends StatelessWidget {
             ),
           );
         },
-        error: (error, stackTrace) => Text(error.toString()),
+        error: (error, stackTrace) => Text(
+          error.toString(),
+          style: const TextStyle(color: Colors.white),
+        ),
         loading: () {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Colors.white,
+          ));
         },
       ),
     );

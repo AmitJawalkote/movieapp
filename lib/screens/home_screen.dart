@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/models/now_playing_model.dart';
 import 'package:movie_app/providers/movies_providers.dart';
-import 'package:movie_app/screens/movies_details_screen.dart';
+import 'package:movie_app/screens/favourite_movies.dart';
 import 'package:movie_app/screens/widgets/movie_category_movies.dart';
 import 'package:movie_app/utils/helpers/constant.dart';
 
@@ -37,7 +37,17 @@ class HomeScreen extends ConsumerWidget {
                 size: 30,
               ),
             ),
-          )
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const FavouriteMovies(),
+                ));
+              },
+              icon: const Icon(
+                Icons.favorite_sharp,
+                color: Colors.white,
+              ))
         ],
         backgroundColor: Colors.transparent,
         title: const Text('Movie App', style: appBarTextStyle),
@@ -88,39 +98,6 @@ class HomeScreen extends ConsumerWidget {
                   return const Center(child: CircularProgressIndicator());
                 },
               ),
-              // CarouselSlider(
-              //   options: CarouselOptions(
-              //     //  height: 400.0,
-              //     enlargeCenterPage: true,
-              //     autoPlay: true,
-              //     autoPlayAnimationDuration: Duration(seconds: 2),
-              //   ),
-              //   items: [
-              //     // Container(
-              //     //     width: MediaQuery.of(context).size.width,
-              //     //     margin: EdgeInsets.symmetric(horizontal: 5.0),
-              //     //     decoration: BoxDecoration(color: Colors.amber),
-              //     //     child: Text(
-              //     //       'text',
-              //     //       style: TextStyle(fontSize: 16.0),
-              //     //     ))
-              //   ],
-              //   // items: [1, 2, 3, 4, 5].map((i) {
-              //   // return Builder(
-              //   //   builder: (BuildContext context) {
-              //   //     return Container(
-              //   //         width: MediaQuery.of(context).size.width,
-              //   //         margin: EdgeInsets.symmetric(horizontal: 5.0),
-              //   //         decoration: BoxDecoration(color: Colors.amber),
-              //   //         child: Text(
-              //   //           'text $i',
-              //   //           style: TextStyle(fontSize: 16.0),
-              //   //         ));
-              //   //   },
-              //   // );
-              //   // }).toList(),
-              // ),
-
               Text(
                 'Now Playing',
                 style: appBarTextStyle.copyWith(fontSize: 20),
@@ -128,7 +105,6 @@ class HomeScreen extends ConsumerWidget {
               MovieCategoryAndItsImages(
                 movies: nowPlayingMovies,
               ),
-
               Text(
                 'Upcoming Movies',
                 style: appBarTextStyle.copyWith(fontSize: 20),

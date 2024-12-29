@@ -2,26 +2,26 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/models/hive_store_data_model.dart';
-import 'package:movie_app/models/movie_details_model.dart';
+import 'package:movie_app/models/seried_details_model.dart';
 import 'package:movie_app/providers/movies_providers.dart';
 import 'package:movie_app/repos/hive_repo.dart';
 import 'package:movie_app/utils/helpers/constant.dart';
 
-class MovieDetailsScreen extends ConsumerWidget {
+class SeresDetailsScreen extends ConsumerWidget {
   final String id;
-  const MovieDetailsScreen({super.key, required this.id});
+  const SeresDetailsScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final HiveRepo hiveRepo = HiveRepo();
-    final AsyncValue<MovieDetailsModel> asyncData =
-        ref.watch(movieDetailsProvider(id));
+    final AsyncValue<SeriesDetailsModel> asyncData =
+        ref.watch(tvSeriesDetailsProvide(id));
     return asyncData.when(
       data: (data) => Scaffold(
         backgroundColor: backGroundColor,
         appBar: AppBar(
           title: Text(
-            data.title.toString(),
+            data.name.toString(),
             style: const TextStyle(color: Colors.white),
           ),
           actions: [
@@ -32,7 +32,7 @@ class MovieDetailsScreen extends ConsumerWidget {
                     final model = MovieSeriesHiveModel(
                         id: data.id.toString(),
                         image: data.posterPath,
-                        movieSeriesName: data.title);
+                        movieSeriesName: data.name);
                     hiveRepo.addMovieAndSeriesToHive(model);
                   },
                   icon: const Icon(Icons.favorite_border_outlined)),
@@ -45,7 +45,7 @@ class MovieDetailsScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CachedNetworkImage(
-                imageUrl: imageUrl + data.posterPath,
+                imageUrl: imageUrl + data.posterPath.toString(),
                 width: double.infinity,
                 height: 100,
                 errorWidget: (context, url, error) => Image.asset(
@@ -55,14 +55,14 @@ class MovieDetailsScreen extends ConsumerWidget {
                 ),
               ),
               Text(
-                data.overview,
+                data.overview.toString(),
                 style: const TextStyle(color: Colors.white, fontSize: 20),
               ),
               const SizedBox(
                 height: 20,
               ),
               Text(
-                "Gener:${data.genres.map(
+                "Gener:${data.genres?.map(
                       (e) => e.name,
                     ).join(',')}",
                 style: const TextStyle(color: Colors.white, fontSize: 20),

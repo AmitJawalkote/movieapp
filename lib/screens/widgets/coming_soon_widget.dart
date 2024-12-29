@@ -8,12 +8,14 @@ class ComongSoonWidget extends StatelessWidget {
   final String overview;
   final String logoUrl;
   final DateTime month;
+  final String movieName;
   const ComongSoonWidget({
     super.key,
     required this.mainImage,
     required this.overview,
     required this.logoUrl,
     required this.month,
+    required this.movieName,
   });
 
   @override
@@ -44,24 +46,36 @@ class ComongSoonWidget extends StatelessWidget {
         ),
         Column(
           children: [
-            SizedBox(
-              width: size.width * 0.7,
-              height: 100,
-              child: CachedNetworkImage(
-                imageUrl: imageUrl + mainImage,
-                errorWidget: (context, url, error) => Image.asset(
-                  'assets/netflix.jpg',
-                  height: 100,
-                  width: size.width * 0.7,
-                ),
-              ),
-            ),
             Row(
               children: [
                 SizedBox(
-                  width: size.width * 0.5,
-                  height: size.height * 0.2,
+                  width: 100,
+                  height: 100,
                   child: CachedNetworkImage(
+                    imageUrl: imageUrl + mainImage,
+                    errorWidget: (context, url, error) => Image.asset(
+                      'assets/netflix.jpg',
+                      height: 100,
+                      width: 100,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  movieName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.white),
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  CachedNetworkImage(
                     imageUrl: imageUrl + logoUrl,
                     alignment: Alignment.centerLeft,
                     errorWidget: (context, url, error) => Image.asset(
@@ -70,8 +84,12 @@ class ComongSoonWidget extends StatelessWidget {
                       height: size.height * 0.2,
                     ),
                   ),
-                ),
-              ],
+                  const Icon(
+                    Icons.notification_add_outlined,
+                    color: Colors.white,
+                  )
+                ],
+              ),
             )
           ],
         )
