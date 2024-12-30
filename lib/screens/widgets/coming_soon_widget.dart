@@ -20,7 +20,6 @@ class ComongSoonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,26 +70,26 @@ class ComongSoonWidget extends StatelessWidget {
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: imageUrl + logoUrl,
-                    alignment: Alignment.centerLeft,
-                    errorWidget: (context, url, error) => Image.asset(
-                      'assets/netflix.jpg',
-                      width: size.width * 0.5,
-                      height: size.height * 0.2,
-                    ),
-                  ),
-                  const Icon(
-                    Icons.notification_add_outlined,
-                    color: Colors.white,
-                  )
-                ],
-              ),
-            )
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Row(
+            //     children: [
+            //       CachedNetworkImage(
+            //         imageUrl: imageUrl + logoUrl,
+            //         alignment: Alignment.centerLeft,
+            //         errorWidget: (context, url, error) => Image.asset(
+            //           'assets/netflix.jpg',
+            //           width: 40,
+            //           height: 20,
+            //         ),
+            //       ),
+            //       const Icon(
+            //         Icons.notification_add_outlined,
+            //         color: Colors.white,
+            //       )
+            //     ],
+            //   ),
+            // )
           ],
         )
       ],

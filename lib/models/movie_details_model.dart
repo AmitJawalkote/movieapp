@@ -3,73 +3,73 @@ part 'movie_details_model.g.dart';
 
 @JsonSerializable()
 class MovieDetailsModel {
-  final bool adult;
+  final bool? adult;
   @JsonKey(name: 'backdrop_path')
-  final String backdropPath;
+  final String? backdropPath;
   @JsonKey(name: 'belongs_to_collection')
   final dynamic belongsToCollection;
-  final int budget;
-  final List<Genre> genres;
-  final String homepage;
-  final int id;
+  final int? budget;
+  final List<Genre>? genres;
+  final String? homepage;
+  final int? id;
   @JsonKey(name: 'imdb_id')
-  final String imdbId;
+  final String? imdbId;
   @JsonKey(name: 'origin_country')
-  final List<String> originCountry;
+  final List<String>? originCountry;
   @JsonKey(name: 'original_language')
-  final String originalLanguage;
+  final String? originalLanguage;
   @JsonKey(name: 'original_title')
-  final String originalTitle;
-  final String overview;
-  final double popularity;
+  final String? originalTitle;
+  final String? overview;
+  final double? popularity;
   @JsonKey(name: 'poster_path')
-  final String posterPath;
+  final String? posterPath;
   @JsonKey(name: 'production_companies')
-  final List<ProductionCompany> productionCompanies;
+  final List<ProductionCompany>? productionCompanies;
   @JsonKey(name: 'production_ountries')
-  final List<ProductionCountry> productionCountries;
+  final List<ProductionCountry>? productionCountries;
   @JsonKey(name: 'release_date')
-  final DateTime releaseDate;
-  final int revenue;
-  final int runtime;
+  final DateTime? releaseDate;
+  final int? revenue;
+  final int? runtime;
   @JsonKey(name: 'spoken_languages')
-  final List<SpokenLanguage> spokenLanguages;
-  final String status;
-  final String tagline;
-  final String title;
-  final bool video;
+  final List<SpokenLanguage>? spokenLanguages;
+  final String? status;
+  final String? tagline;
+  final String? title;
+  final bool? video;
   @JsonKey(name: 'vote_average')
-  final double voteAverage;
+  final double? voteAverage;
   @JsonKey(name: 'vote_count')
-  final int voteCount;
+  final int? voteCount;
 
   MovieDetailsModel({
-    required this.adult,
-    required this.backdropPath,
-    required this.belongsToCollection,
-    required this.budget,
-    required this.genres,
-    required this.homepage,
-    required this.id,
-    required this.imdbId,
-    required this.originCountry,
-    required this.originalLanguage,
-    required this.originalTitle,
-    required this.overview,
-    required this.popularity,
-    required this.posterPath,
-    required this.productionCompanies,
-    required this.productionCountries,
-    required this.releaseDate,
-    required this.revenue,
-    required this.runtime,
-    required this.spokenLanguages,
-    required this.status,
-    required this.tagline,
-    required this.title,
-    required this.video,
-    required this.voteAverage,
-    required this.voteCount,
+    this.adult,
+    this.backdropPath,
+    this.belongsToCollection,
+    this.budget,
+    this.genres,
+    this.homepage,
+    this.id,
+    this.imdbId,
+    this.originCountry,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.productionCompanies,
+    this.productionCountries,
+    this.releaseDate,
+    this.revenue,
+    this.runtime,
+    this.spokenLanguages,
+    this.status,
+    this.tagline,
+    this.title,
+    this.video,
+    this.voteAverage,
+    this.voteCount,
   });
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$MovieDetailsModelFromJson(json);
@@ -79,12 +79,12 @@ class MovieDetailsModel {
 
 @JsonSerializable()
 class Genre {
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
 
   Genre({
-    required this.id,
-    required this.name,
+     this.id,
+     this.name,
   });
 
   factory Genre.fromJson(Map<String, dynamic> json) => _$GenreFromJson(json);
@@ -94,18 +94,18 @@ class Genre {
 
 @JsonSerializable()
 class ProductionCompany {
-  final int id;
+  final int? id;
   @JsonKey(name: 'logo_path')
-  final String logoPath;
-  final String name;
+  final String? logoPath;
+  final String? name;
   @JsonKey(name: 'origin_country')
-  final String originCountry;
+  final String? originCountry;
 
   ProductionCompany({
-    required this.id,
-    required this.logoPath,
-    required this.name,
-    required this.originCountry,
+     this.id,
+     this.logoPath,
+     this.name,
+     this.originCountry,
   });
   factory ProductionCompany.fromJson(Map<String, dynamic> json) =>
       _$ProductionCompanyFromJson(json);
@@ -116,12 +116,12 @@ class ProductionCompany {
 @JsonSerializable()
 class ProductionCountry {
   @JsonKey(name: 'iso_3166_1')
-  final String iso31661;
-  final String name;
+  final String? iso31661;
+  final String? name;
 
   ProductionCountry({
-    required this.iso31661,
-    required this.name,
+     this.iso31661,
+     this.name,
   });
 
   factory ProductionCountry.fromJson(Map<String, dynamic> json) =>
@@ -133,10 +133,10 @@ class ProductionCountry {
 @JsonSerializable()
 class SpokenLanguage {
   @JsonKey(name: 'english_name')
-  final String englishName;
+  final String? englishName;
   @JsonKey(name: 'iso_639_1')
-  final String iso6391;
-  final String name;
+  final String? iso6391;
+  final String? name;
 
   SpokenLanguage({
     required this.englishName,

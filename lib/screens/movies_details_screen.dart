@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,73 +16,70 @@ class MovieDetailsScreen extends ConsumerWidget {
     final HiveRepo hiveRepo = HiveRepo();
     final AsyncValue<MovieDetailsModel> asyncData =
         ref.watch(movieDetailsProvider(id));
-
     return asyncData.when(
-      data: (data) {
-        log(data.toString());
-        return Scaffold(
-          backgroundColor: backGroundColor,
-          appBar: AppBar(
-            title: Text(
-              'sdsd',
-              style: const TextStyle(color: Colors.white),
-            ),
-            // actions: [
-            //   Padding(
-            //     padding: const EdgeInsets.all(8),
-            //     child: IconButton(
-            //         onPressed: () {
-            //           final model = MovieSeriesHiveModel(
-            //               id: data.id.toString(),
-            //               image: data.posterPath,
-            //               movieSeriesName: data.title);
-            //           hiveRepo.addMovieAndSeriesToHive(model);
-            //         },
-            //         icon: const Icon(Icons.favorite_border_outlined)),
-            //   )
-            // ],
+      data: (data) => Scaffold(
+        backgroundColor: backGroundColor,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: Colors.transparent,
+          title: Text(
+            data.title.toString(),
+            style: const TextStyle(color: Colors.white),
           ),
-          // body: Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       CachedNetworkImage(
-          //         imageUrl: imageUrl + data.posterPath,
-          //         width: double.infinity,
-          //         height: 100,
-          //         errorWidget: (context, url, error) => Image.asset(
-          //           'assets/netflix.jpg',
-          //           width: double.infinity,
-          //           height: 100,
-          //         ),
-          //       ),
-          //       Text(
-          //         data.overview,
-          //         style: const TextStyle(color: Colors.white, fontSize: 20),
-          //       ),
-          //       const SizedBox(
-          //         height: 20,
-          //       ),
-          //       Text(
-          //         "Gener:${data.genres.map(
-          //               (e) => e.name,
-          //             ).join(',')}",
-          //         style: const TextStyle(color: Colors.white, fontSize: 20),
-          //       )
-          //     ],
-          //   ),
-          // ),
-        );
-      },
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: IconButton(
+                  onPressed: () {
+                    final model = MovieSeriesHiveModel(
+                        id: data.id.toString(),
+                        image: data.posterPath,
+                        movieSeriesName: data.title);
+                    hiveRepo.addMovieAndSeriesToHive(model);
+                  },
+                  icon: const Icon(Icons.favorite_border_outlined)),
+            )
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CachedNetworkImage(
+                imageUrl: imageUrl + data.posterPath.toString(),
+                width: double.infinity,
+                height: 100,
+                errorWidget: (context, url, error) => Image.asset(
+                  'assets/netflix.jpg',
+                  width: double.infinity,
+                  height: 100,
+                ),
+              ),
+              Text(
+                data.overview.toString(),
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Gener:${data.genres?.map(
+                      (e) => e.name,
+                    ).join(',')}",
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              )
+            ],
+          ),
+        ),
+      ),
       error: (error, stackTrace) => const Text(
-        'error',
-        // style: TextStyle(color: Colors.white),
+        'unable to fetch movie Details',
+        style: TextStyle(color: Colors.white),
       ),
       loading: () => const Center(
           child: SizedBox(
               width: 20, height: 20, child: CircularProgressIndicator())),
     );
-//
   }
 }
