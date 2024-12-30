@@ -20,6 +20,7 @@ class SeresDetailsScreen extends ConsumerWidget {
       data: (data) => Scaffold(
         backgroundColor: backGroundColor,
         appBar: AppBar(
+          iconTheme: const IconThemeData(color: Colors.white),
           backgroundColor: Colors.transparent,
           title: Text(
             data.name.toString(),
