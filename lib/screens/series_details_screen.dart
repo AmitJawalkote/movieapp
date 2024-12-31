@@ -34,6 +34,7 @@ class SeresDetailsScreen extends ConsumerWidget {
                     final model = MovieSeriesHiveModel(
                         id: data.id.toString(),
                         image: data.posterPath,
+                        isMovie: false,
                         movieSeriesName: data.name);
                     hiveRepo.addMovieAndSeriesToHive(model);
                   },

@@ -82,6 +82,8 @@ class _FavouriteMoviesState extends State<FavouriteMovies> {
                             width: 10,
                           ),
                           Text(
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             favMovies[index].movieSeriesName.toString(),
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.white),

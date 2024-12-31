@@ -70,12 +70,15 @@ class UpcomingScreen extends ConsumerWidget {
                   shrinkWrap: true,
                   itemCount: moviesList.length,
                   itemBuilder: (context, index) {
-                    return ComongSoonWidget(
-                      movieName:  moviesList[index].title.toString(),
-                      mainImage: moviesList[index].posterPath.toString(),
-                      logoUrl: moviesList[index].backdropPath.toString(),
-                      month: moviesList[index].releaseDate!,
-                      overview: moviesList[index].overview.toString(),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ComongSoonWidget(
+                        movieName: moviesList[index].title.toString(),
+                        mainImage: moviesList[index].posterPath.toString(),
+                        logoUrl: moviesList[index].backdropPath.toString(),
+                        month: moviesList[index].releaseDate!,
+                        overview: moviesList[index].overview.toString(),
+                      ),
                     );
                   },
                 ),
@@ -86,7 +89,15 @@ class UpcomingScreen extends ConsumerWidget {
               return const Center(child: CircularProgressIndicator());
             },
           ),
-          const SizedBox()
+          const Center(
+            child: Text(
+              'Coming Soon....',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold),
+            ),
+          )
         ]),
       ),
     );
